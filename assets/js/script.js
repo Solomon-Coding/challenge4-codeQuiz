@@ -17,7 +17,7 @@ var q1={
           "other arrays",
           "booleans",
           "all of the above"],
-  correctOption:3,
+  correctOption:2,
 };
 
 var q2={
@@ -27,7 +27,7 @@ var q2={
           "booleans",
           "alerts",
           "numbers"],
-  correctOption:3,
+  correctOption:2,
 };
 
 var q3={
@@ -37,7 +37,7 @@ var q3={
           "<script>",
           "<javascript>",
           "<scripting>"],
-  correctOption:2,
+  correctOption:1,
 };
 
 var q4={
@@ -47,49 +47,72 @@ var q4={
           '<script name="xxx.js">',
           '<script src="xxx.js">',
           '<script href="xxx.js">'],
-  correctOption:3,
+  correctOption:2,
 };
 
 const questions=[q1,q2,q3,q4];
-
-function quizQuestions(i) {
-  pEl.textContent = questions[i].prompt;
-  liEls[0].textContent = questions[i].options[0];
-  liEls[1].textContent = questions[i].options[1];
-  liEls[2].textContent = questions[i].options[2];
-  liEls[3].textContent = questions[i].options[3];
-  
-  liEls[0].addEventListener("click",function handleClick(){
-    var a=0;
-    console.log(a);
-    return a;
-  });
-  liEls[1].addEventListener("click",function handleClick(){
-    var a=1;
-    console.log(a);
-    return a;
-  });
-  liEls[2].addEventListener("click",function handleClick(){
-    var a=2;
-    console.log(a);
-    return a;
-  });
-  a[3]=liEls[3].addEventListener("click",function handleClick(){
-    var a=3;
-    console.log(a);
-    return a;
-  });
-console.log(a)
-  if (a==questions[i].correctOption){
-    answerResponseEl.textContent("Correct");
-  }else {
-    answerResponseEl.textContent("Wrong");
-  }
-  i++;
-  quizQuestions(i)
-}
-
 quizQuestions(i);
+function quizQuestions(index) {
+  pEl.textContent = questions[index].prompt;
+  console.log(questions[index].prompt)
+
+  for (var n=0;n<4;n++) {
+    liEls[n].textContent = questions[index].options[n];
+  }
+
+  liEls[0].addEventListener("click", function() {
+    if (0 == questions[index].correctOption) {
+      answerResponseEl.textContent="Correct";
+      currentScore++;
+    }else {
+      answerResponseEl.textContent="Wrong";
+    }
+    index++;
+    quizQuestions(index)
+  });
+  liEls[1].addEventListener("click", function() {
+    if (1 == questions[index].correctOption) {
+      answerResponseEl.textContent="Correct";
+      currentScore++;
+    }else {
+      answerResponseEl.textContent="Wrong";
+    }
+    index++;
+    quizQuestions(index)
+  });
+  liEls[2].addEventListener("click", function() {
+    if (2 == questions[index].correctOption) {
+      answerResponseEl.textContent="Correct";
+      currentScore++;
+    }else {
+      answerResponseEl.textContent="Wrong";
+    }
+    index++;
+    quizQuestions(index)
+  });
+  liEls[3].addEventListener("click", function() {
+    if (3 == questions[index].correctOption) {
+      answerResponseEl.textContent="Correct";
+      currentScore++;
+    }else {
+      answerResponseEl.textContent="Wrong";
+    }
+    index++;
+    quizQuestions(index)
+  });
+}
+function answerSelection(m){
+  liEls[m].addEventListener("click", function() {
+    if (m == questions[index].correctOption) {
+      answerResponseEl.textContent="Correct";
+      currentScore++;
+    }else {
+      answerResponseEl.textContent="Wrong";
+    }
+    index++;
+    quizQuestions(index)
+  });
+}
 
 // Selects element by class
 var timeEl = document.querySelector(".time");
