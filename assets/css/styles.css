@@ -20,9 +20,9 @@ header {
 }
 
 /* MAIN */
-
-main {
-    display: flex;
+main p {
+    font-weight: bolder;
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -32,6 +32,7 @@ main {
     list-style-position: inside;
     color: var(--color1);
     margin: 5px;
+    width: fit-content;
 }
 
 .btn:hover {
@@ -39,15 +40,12 @@ main {
     cursor: pointer;
 }
 
-main p {
-    font-weight: bolder;
-    margin-bottom: 10px;
-}
 .align {
     margin-left: 30%;
 }
 
 #answerResponse {
+    display: flex;
+    justify-content: center;
     font-style: italic;
-    /* align-items: center; */
 }
