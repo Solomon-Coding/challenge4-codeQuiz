@@ -46,3 +46,7 @@ main p {
 .align {
     margin-left: 30%;
 }
+
+#answerResponse {
+    font-style: italic;
+}
