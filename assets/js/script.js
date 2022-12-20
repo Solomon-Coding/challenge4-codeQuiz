@@ -51,7 +51,7 @@ var q4={
 };
 
 const questions=[q1,q2,q3,q4];
-quizQuestions(i);
+// quizQuestions(i);
 function quizQuestions(index) {
   pEl.textContent = questions[index].prompt;
   console.log(questions[index].prompt)
@@ -66,6 +66,7 @@ function quizQuestions(index) {
       currentScore++;
     }else {
       answerResponseEl.textContent="Wrong";
+      secondsLeft = secondsLeft-5;
     }
     index++;
     quizQuestions(index)
@@ -76,6 +77,7 @@ function quizQuestions(index) {
       currentScore++;
     }else {
       answerResponseEl.textContent="Wrong";
+      secondsLeft = secondsLeft-5;
     }
     index++;
     quizQuestions(index)
@@ -86,6 +88,7 @@ function quizQuestions(index) {
       currentScore++;
     }else {
       answerResponseEl.textContent="Wrong";
+      secondsLeft = secondsLeft-5;
     }
     index++;
     quizQuestions(index)
@@ -96,11 +99,13 @@ function quizQuestions(index) {
       currentScore++;
     }else {
       answerResponseEl.textContent="Wrong";
+      secondsLeft = secondsLeft-5;
     }
     index++;
     quizQuestions(index)
   });
 }
+
 function answerSelection(m){
   liEls[m].addEventListener("click", function() {
     if (m == questions[index].correctOption) {
@@ -121,12 +126,16 @@ var secondsLeft = 60;
 
 function setTime() {
   // Sets interval in variable
+  quizQuestions(i)
   var timerInterval = setInterval(function() {
+    
     secondsLeft--;
     timeEl.textContent = "Time: " + secondsLeft;
 
-    if(secondsLeft === 0) {
+    if(secondsLeft <= 0) {
       // Stops execution of action at set interval
+      
+      clearInterval(timerInterval);
       timeEl.textContent = " ";
 
     //   sendMessage();
