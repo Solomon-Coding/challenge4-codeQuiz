@@ -2,7 +2,11 @@
 const pEl = document.querySelector("p");
 const liEls = document.querySelectorAll("li");
 const answerResponseEl = document.querySelector("#answerResponse");
+var quizEl = document.querySelector("#quiz");
+var timeEl = document.querySelector(".time");
+var recordScoreEl = document.querySelector("#recordScore");
 
+var secondsLeft = 60;
 var currentScore = [];
 var i = 0;
 var initialText="Coding Quiz Challenge";
@@ -50,8 +54,8 @@ var q4={
   correctOption:2,
 };
 
-const questions=[q1,q2,q3,q4];
-// quizQuestions(i);
+const questions=[q1,q2,q3,q4,q1,q2,q3,q4,q1,q2,q3,q4];
+
 function quizQuestions(index) {
   pEl.textContent = questions[index].prompt;
   console.log(questions[index].prompt)
@@ -93,7 +97,7 @@ function quizQuestions(index) {
     index++;
     quizQuestions(index)
   });
-  liEls[3].addEventListener("click", function() {
+  liEls[3].addEventListener("click", function () {
     if (3 == questions[index].correctOption) {
       answerResponseEl.textContent="Correct";
       currentScore++;
@@ -104,6 +108,18 @@ function quizQuestions(index) {
     index++;
     quizQuestions(index)
   });
+}
+
+function btnClicked(n,index){
+  if (n == questions[index].correctOption) {
+    answerResponseEl.textContent="Correct";
+    currentScore++;
+  }else {
+    answerResponseEl.textContent="Wrong";
+    secondsLeft = secondsLeft-5;
+  }
+  index++;
+  quizQuestions(index)
 }
 
 function answerSelection(m){
@@ -119,11 +135,6 @@ function answerSelection(m){
   });
 }
 
-// Selects element by class
-var timeEl = document.querySelector(".time");
-
-var secondsLeft = 60;
-
 function setTime() {
   // Sets interval in variable
   quizQuestions(i)
@@ -137,6 +148,7 @@ function setTime() {
       
       clearInterval(timerInterval);
       timeEl.textContent = " ";
+      quizEl.setAttribute("style","display:none")
 
     //   sendMessage();
     }
@@ -144,9 +156,7 @@ function setTime() {
   }, 1000);
 }
 
-function sendMessage() {
-  timeEl.textContent = " ";
+function setScore(){
 
 }
-
 setTime();
